@@ -5,12 +5,11 @@ class Sonar
 {
   public:
     Sonar();
-    void init(int trigger, int echo);
+    void init(int signal);
     double distance();
 
   private:
-    int trigger;
-    int echo;
+    int signal;
     double startTime;
     double arrivalTime;
     double timeElapsed;
