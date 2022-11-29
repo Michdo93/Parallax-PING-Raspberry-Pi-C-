@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <pigpio.h>
 #include "libSonar.h"
+#include <unistd.h>
 
 Sonar::Sonar(){}
 
@@ -9,7 +10,7 @@ void Sonar::init(int signal)
 {
     this->signal=signal;
     gpioSetMode(si, PI_OUTPUT);
-    timeout = 0.05;
+    double timeout = 0.05;
 }
 
 double Sonar::distance()
@@ -49,7 +50,7 @@ double Sonar::distance()
 
     if(pulse_start != 0 and pulse_end != 0) {
         double pulse_duration = pulse_end - pulse_start;
-        double distanceCalculated = (timeElapsed * 34300) / 2;
+        double distanceCalculated = (pulse_duration * 34300) / 2;
       
         if(distanceCalculated >= 0) {
             return distanceCalculated;
@@ -59,4 +60,15 @@ double Sonar::distance()
     } else {
         return -1;
     }
+}
+
+double Sonar::speed()
+{
+    double distance1 = distance();    
+    usleep(1000000);
+    double distance2 = distance();
+    
+    double speedMeasured = (distance2 - distance1) / 1.0;
+    
+    return speedMeasured;
 }
