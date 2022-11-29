@@ -7,6 +7,7 @@ class Sonar
     Sonar();
     void init(int signal);
     double distance();
+    double speed();
 
   private:
     int signal;
@@ -16,6 +17,9 @@ class Sonar
     double timeout_start;
     double pulse_duration;
     double distanceCalculated;
+    double distance1;
+    double distance2;
+    double speedMeasured;
 };
 
 #endif
