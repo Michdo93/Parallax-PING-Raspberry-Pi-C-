@@ -10,9 +10,11 @@ class Sonar
 
   private:
     int signal;
-    double startTime;
-    double arrivalTime;
-    double timeElapsed;
+    double timeout;
+    double pulse_end;
+    double pulse_start;
+    double timeout_start;
+    double pulse_duration;
     double distanceCalculated;
 };
 
