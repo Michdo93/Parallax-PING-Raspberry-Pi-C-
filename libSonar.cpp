@@ -6,7 +6,7 @@
 
 Sonar::Sonar(){}
 
-void Sonar::init(const int &signal)
+void Sonar::init(const uint8_t &signal)
 {
     this->signal=signal;
     gpioSetMode(si, PI_OUTPUT);
