@@ -7,7 +7,7 @@
 
 using namespace std;
 
-const const uint8_t signal = 19;
+const uint8_t signal = 19;
 
 int main()
 {
