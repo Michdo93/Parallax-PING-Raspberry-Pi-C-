@@ -6,7 +6,7 @@
 
 Sonar::Sonar(){}
 
-void Sonar::init(int signal)
+void Sonar::init(const int &signal)
 {
     this->signal=signal;
     gpioSetMode(si, PI_OUTPUT);
@@ -15,8 +15,8 @@ void Sonar::init(int signal)
 
 double Sonar::distance()
 {
-    double pulse_end = 0;
-    double pulse_start = 0;
+    double pulseEnd = 0;
+    double pulseStart = 0;
   
     gpioSetMode(signal, PI_OUTPUT);
     gpioSetMode(signal, PI_LOW);
@@ -30,27 +30,27 @@ double Sonar::distance()
     gpioSetMode(signal, PI_LOW);
     gpioSetMode(signal, PI_INPUT);
 
-    double timeout_start = time_time();
+    double timeoutStart = time_time();
 
     while(gpioRead(signal) == PI_LOW) {
-        pulse_start = time_time();
+        pulseStart = time_time();
       
-        if(pulse_start - timeout_start > this->timeout) {
+        if(pulseStart - timeoutStart > this->timeout) {
             return -1;
         }
     }
 
     while(gpioRead(signal) == PI_HIGH) {
-        pulse_end = time_time();
+        pulseEnd = time_time();
       
-        if(pulse_start - timeout_start > this->timeout) {
+        if(pulseStart - timeoutStart > this->timeout) {
             return -1;
         }
     }
 
-    if(pulse_start != 0 and pulse_end != 0) {
-        double pulse_duration = pulse_end - pulse_start;
-        double distanceCalculated = (pulse_duration * 34300) / 2;
+    if(pulseStart != 0 and pulseEnd != 0) {
+        double pulseDuration = pulseEnd - pulseStart;
+        double distanceCalculated = (pulseDuration * 34300) / 2;
       
         if(distanceCalculated >= 0) {
             return distanceCalculated;
