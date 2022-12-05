@@ -5,7 +5,7 @@ class Sonar
 {
   public:
     Sonar();
-    void init(int signal);
+    void init(const int &signal);
     double distance();
     double speed();
 
