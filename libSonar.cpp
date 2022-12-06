@@ -1,8 +1,9 @@
 #include <iostream>
+#include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <pigpio.h>
 #include "libSonar.h"
-#include <unistd.h>
 
 Sonar::Sonar(){}
 
@@ -71,4 +72,9 @@ double Sonar::speed()
     double speedMeasured = (distance2 - distance1) / 1.0;
     
     return speedMeasured;
+}
+
+Sonar::~Sonar()
+{
+    gpioTerminate();
 }
