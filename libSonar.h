@@ -8,6 +8,7 @@ class Sonar
     void init(const uint8_t &signal);
     double distance();
     double speed();
+    ~Sonar();
 
   private:
     int signal;
