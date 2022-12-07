@@ -20,15 +20,15 @@ double Sonar::distance()
     double pulseStart = 0;
   
     gpioSetMode(signal, PI_OUTPUT);
-    gpioSetMode(signal, PI_LOW);
+    gpioWrite(signal, PI_LOW);
   
     gpioDelay(10000);
 
-    gpioSetMode(signal, PI_HIGH);
+    gpioWrite(signal, PI_HIGH);
 
     gpioDelay(10);
   
-    gpioSetMode(signal, PI_LOW);
+    gpioWrite(signal, PI_LOW);
     gpioSetMode(signal, PI_INPUT);
 
     double timeoutStart = time_time();
